@@ -12,9 +12,13 @@ import Drop from "./Drop";
 export default class Home extends Component {
   constructor(props) {
     super(props);
+
+    this.setFiltered = this.setFiltered.bind(this);
+
     this.state = {
       allCountries: [],
       countries: [],
+      filteredCountries: [],
       searchField: "",
     };
   }
@@ -23,6 +27,17 @@ export default class Home extends Component {
     try {
       const response = await axios.get("https://restcountries.com/v3.1/all");
       this.setState({ countries: response.data, allCountries: response.data });
+      this.setState({
+        filteredCountries: this.state.countries.filter((country) => {
+          if (
+            country.name.common
+              .toLowerCase()
+              .includes(this.state.searchField.toLowerCase())
+          ) {
+            return country;
+          }
+        }),
+      });
     } catch (error) {
       console.log(error);
     }
@@ -36,16 +51,12 @@ export default class Home extends Component {
     this.setState({ countries });
   }
 
+  setFiltered(countries) {
+    this.setState({ filteredCountries: countries });
+  }
+
   render() {
     const { countries, searchField } = this.state;
-    const filteredCountries = countries.filter((country) => {
-      if (
-        country.name.common.toLowerCase().includes(searchField.toLowerCase())
-      ) {
-        return country;
-      }
-    });
-
     return (
       <div>
         {/* <Header /> */}
@@ -54,14 +65,14 @@ export default class Home extends Component {
           handleChange={(e) => this.setState({ searchField: e.target.value })}
         />
         <Drop
-          setCountries={this.setCountries}
+          setCountries={this.setFiltered}
           allCountries={this.state.allCountries}
         />
         <Col>
           {/* {this.state.countries.map((c) => {
       return <h1>{c.name.common}</h1>
     })} */}
-          <Cards countryData={filteredCountries} />
+          <Cards countryData={this.state.filteredCountries} />
         </Col>
       </div>
     );

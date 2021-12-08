@@ -1,9 +1,31 @@
 import React, { Component } from "react";
-import { Dropdown, DropdownButton } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
 
 export default class Drop extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      filtered_countries: [],
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      filtered_countries: this.props.allCountries,
+    });
+  }
+
   handleSelect(e) {
-    console.log(this.props);
+    this.setState({
+      filtered_countries: this.props.allCountries.filter((country) => {
+        return country.continents[0].toLowerCase() !== e;
+      }),
+    });
+
+    console.log(this.state.filtered_countries);
+
+    this.props.setCountries(this.state.filtered_countries);
   }
 
   render() {

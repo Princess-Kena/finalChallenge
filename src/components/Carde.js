@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, Button, Col } from "react-bootstrap";
+import { Card, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export default class Carde extends Component {
@@ -7,7 +7,9 @@ export default class Carde extends Component {
     return (
       <Col md="3">
         <div className="cards">
-          <Link as Card
+          <Link
+            as
+            Card
             style={{ width: "12rem", margin: "50px" }}
             to={{ pathname: "/countryDetails", state: this.props.countryInfo }}
           >
