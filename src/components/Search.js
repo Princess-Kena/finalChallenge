@@ -1,8 +1,21 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { InputGroup, FormControl } from "react-bootstrap";
 
 const Search = (props) => {
+  const [query, setQuery] = useState("");
+
+  const handleChange = (e) => {
+    setQuery(e.target.value);
+
+    props.setCountries(
+      props.data.filter((country) => {
+        if (country.name.common.toLowerCase().includes(query.toLowerCase()))
+          return country;
+      })
+    );
+  };
+
   return (
     <div>
       <div
@@ -20,7 +33,7 @@ const Search = (props) => {
             </InputGroup.Text>
             <FormControl
               placeholder={props.placeholder}
-              onChange={props.handleChange}
+              onChange={handleChange}
               aria-label="Username"
               aria-describedby="basic-addon1"
             />

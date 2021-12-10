@@ -10,11 +10,9 @@ export default class Carde extends Component {
           <Link
             as
             Card
-            style={{ width: "12rem", margin: "50px" }}
             to={{ pathname: "/countryDetails", state: this.props.countryInfo }}
           >
             <Card.Img
-              style={{ width: "12rem", height: "8rem" }}
               variant="top"
               src={this.props.countryInfo.flags.svg}
               alt="Image"

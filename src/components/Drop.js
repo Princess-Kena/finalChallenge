@@ -17,15 +17,11 @@ export default class Drop extends Component {
   }
 
   handleSelect(e) {
-    this.setState({
-      filtered_countries: this.props.allCountries.filter((country) => {
-        return country.continents[0].toLowerCase() !== e;
-      }),
-    });
-
-    console.log(this.state.filtered_countries);
-
-    this.props.setCountries(this.state.filtered_countries);
+    this.props.setCountries(
+      this.props.allCountries.filter((country) => {
+        return country.continents[0].toLowerCase() == e;
+      })
+    );
   }
 
   render() {
@@ -44,9 +40,13 @@ export default class Drop extends Component {
 
           <Dropdown.Menu>
             <Dropdown.Item eventKey="africa">Africa</Dropdown.Item>
-            <Dropdown.Item eventKey="northamerica">North America</Dropdown.Item>
+            <Dropdown.Item eventKey="north america">
+              North America
+            </Dropdown.Item>
             <Dropdown.Item eventKey="asia">Asia</Dropdown.Item>
-            <Dropdown.Item eventKey="southamerica">South America</Dropdown.Item>
+            <Dropdown.Item eventKey="south america">
+              South America
+            </Dropdown.Item>
             <Dropdown.Item eventKey="antarctica">Antarctica</Dropdown.Item>
             <Dropdown.Item eventKey="europe">Europe</Dropdown.Item>
             <Dropdown.Item eventKey="oceania">Oceania</Dropdown.Item>
