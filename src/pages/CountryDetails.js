@@ -35,11 +35,12 @@ const CountryDetails = (props) => {
             <div
               style={{
                 width: "70px",
-                height: "27px",
-                backgroundColor: "darkkhaki",
-                marginRight: "7px",
-                marginLeft: "20px",
-                borderRadius: "2px",
+                height: "25px",
+                backgroundColor: "hsl(209, 23%, 22%)",
+                marginRight: "5px",
+                marginLeft: "15px",
+                borderRadius: "3px",
+                textAlign: "center",
               }}
             >
               <text>{border}</text>
@@ -66,7 +67,7 @@ const CountryDetails = (props) => {
             style={{
               display: "flex",
               alignSelf: "flex-start",
-              marginLeft: "20px",
+              marginLeft: "50px",
             }}
           >
             <BiArrowBack />
@@ -75,7 +76,7 @@ const CountryDetails = (props) => {
         </a>
       </div>
 
-      <div style={{ display: "flex", flexDirection: "row", marginTop: "50px" }}>
+      <div style={{ display: "flex", flexDirection: "row", margin: "50px" }}>
         <Col md="6">
           <img
             src={countryDetails.flags.png}
